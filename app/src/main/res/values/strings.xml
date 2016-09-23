@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">IRController</string>
+    <string name="carrier_type">Carrier Type</string>
+    <string name="customer_type">Customer Type</string>
+    <string name="customer_type_hint">ex)BF40</string>
+    <string name="device_name">Device Name</string>
+    <string name="device_name_hint">Input Name</string>
+    <string name="command_name">Command Name</string>
+    <string name="command_name_hint">Command Name</string>
+    <string name="command_data">Command Data</string>
+    <string name="command_data_hint">ex)1B,3A</string>
+    <string name="select_device">Select Device</string>
+    <string name="select_command">Select Command</string>
+    <string name="append_device">Append Device</string>
+    <string name="edit_device">Edit Device</string>
+    <string name="append_command">Append Command</string>
+    <string name="action_append">Append</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_none">None</string>
+    <string name="intent_extra_deviceinfo">DeviceInfo</string>
+    <string name="intent_extra_commandinfo">CommandInfo</string>
+</resources>
