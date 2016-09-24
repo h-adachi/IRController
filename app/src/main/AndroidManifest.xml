@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hadachi.com.ircontroller">
+    package="h_adachi.com.ircontroller">
 
     <uses-permission android:name="android.permission.TRANSMIT_IR" />
 
@@ -11,17 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TargetSelectActivity"
+            android:name=".DeviceChoiceActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".CommandSelectActivity"
-            android:label="@string/select_command"
+            android:name=".CommandChoiceActivity"
+            android:label="@string/title_activity_command_choice"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

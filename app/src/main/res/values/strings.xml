@@ -1,24 +1,33 @@
 <resources>
     <string name="app_name">IRController</string>
-    <string name="carrier_type">Carrier Type</string>
-    <string name="customer_type">Customer Type</string>
-    <string name="customer_type_hint">ex)BF40</string>
-    <string name="device_name">Device Name</string>
-    <string name="device_name_hint">Input Name</string>
-    <string name="command_name">Command Name</string>
-    <string name="command_name_hint">Command Name</string>
-    <string name="command_data">Command Data</string>
-    <string name="command_data_hint">ex)1B,3A</string>
-    <string name="select_device">Select Device</string>
-    <string name="select_command">Select Command</string>
-    <string name="append_device">Append Device</string>
-    <string name="edit_device">Edit Device</string>
-    <string name="append_command">Append Command</string>
-    <string name="action_append">Append</string>
-    <string name="action_cancel">Cancel</string>
-    <string name="action_edit">Edit</string>
-    <string name="action_delete">Delete</string>
-    <string name="action_none">None</string>
-    <string name="intent_extra_deviceinfo">DeviceInfo</string>
-    <string name="intent_extra_commandinfo">CommandInfo</string>
+    <string name="menu_append">Append</string>
+
+    <string name="operation_none">None</string>
+    <string name="operation_edit">Edit</string>
+    <string name="operation_delete">Delete</string>
+
+    <string name="intent_extra_device_info">DeviceInfo</string>
+    <string name="intent_extra_command_info">CommandInfo</string>
+
+    <string name="dialog_title_create">Create</string>
+    <string name="dialog_title_edit">Edit</string>
+    <string name="dialog_device_format">Format</string>
+    <string name="dialog_device_format_none">None</string>
+    <string name="dialog_device_format_nec">NEC</string>
+    <string name="dialog_device_format_aeha">AEHA</string>
+    <string name="dialog_device_format_sony">SONY</string>
+    <string name="dialog_device_customer">Customer</string>
+    <string name="dialog_device_customer_hint">ex)BF40</string>
+    <string name="dialog_device_name">Name</string>
+    <string name="dialog_device_name_hint">Input Name</string>
+    <string name="dialog_command_name">Name</string>
+    <string name="dialog_command_name_hint">Input Name</string>
+    <string name="dialog_command_data">Data</string>
+    <string name="dialog_command_data_hint">ex)12,1F...</string>
+    <string name="dialog_result_ok">OK</string>
+    <string name="dialog_result_cancel">Cancel</string>
+
+    <string name="title_activity_command_choice">Command Choice</string>
+    <string name="title_activity_device_choice">Device Choice</string>
+
 </resources>

@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="h_adachi.com.ircontroller.CommandChoiceActivity">
+    <item
+        android:id="@+id/action_append"
+        android:orderInCategory="100"
+        android:title="@string/menu_append"
+        app:showAsAction="never" />
+</menu>
