@@ -32,3 +32,4 @@ http://www.ne.jp/asahi/o-family/extdisk/ATBextension/ATBIRrecvNEC/ATBIRrecvNECls
 https://h-adachi.github.io/IRController/.
 
 ## Google Apps
+https://play.google.com/store/apps/details?id=h_adachi.com.ircontroller
