@@ -26,3 +26,9 @@
 ### 参考資料等
 http://elm-chan.org/docs/ir_format.html  
 http://www.ne.jp/asahi/o-family/extdisk/ATBextension/ATBIRrecvNEC/ATBIRrecvNEClst.pdf
+
+## デバイス一覧
+調査したもの  
+https://h-adachi.github.io/IRController/.
+
+## Google Apps
