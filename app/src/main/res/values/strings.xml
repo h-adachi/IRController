@@ -11,6 +11,7 @@
 
     <string name="dialog_title_create">Create</string>
     <string name="dialog_title_edit">Edit</string>
+    <string name="dialog_title_no_support">No Support</string>
     <string name="dialog_device_format">Format</string>
     <string name="dialog_device_format_none">None</string>
     <string name="dialog_device_format_nec">NEC</string>

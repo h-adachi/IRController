@@ -134,7 +134,14 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
                     // NEC
                     case R.id.dialog_device_format_nec:
                         ir = new IRFormatNEC();
-                        ir.Init((short)Integer.parseInt(mDeviceInfo.Customer, 16));
+                        try
+                        {
+                            ir.Init((short) Integer.parseInt(mDeviceInfo.Customer, 16));
+                        }
+                        catch(NumberFormatException e)
+                        {
+                            return;
+                        }
                         break;
                 }
                 if(ir == null) return;
@@ -157,7 +164,15 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
                     }
                     else
                     {
-                        dataList.add((byte)(Integer.parseInt(datas[i], 16)));
+                        try
+                        {
+                            dataList.add((byte)(Integer.parseInt(datas[i], 16)));
+                        }
+                        catch(NumberFormatException e)
+                        {
+                            return;
+                        }
+
                     }
                 }
                 if(dataList.size() > 0)

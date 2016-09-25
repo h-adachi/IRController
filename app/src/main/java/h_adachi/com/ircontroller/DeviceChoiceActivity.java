@@ -1,5 +1,7 @@
 package h_adachi.com.ircontroller;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.ConsumerIrManager;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import android.widget.ListView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DeviceChoiceActivity extends AppCompatActivity implements IOkButtonListener
+public class DeviceChoiceActivity extends AppCompatActivity implements DialogInterface.OnClickListener, IOkButtonListener
 {
     DeviceInfoAdapter mAdapter;
 
@@ -30,7 +32,11 @@ public class DeviceChoiceActivity extends AppCompatActivity implements IOkButton
         ConsumerIrManager ir = (ConsumerIrManager)getSystemService(CONSUMER_IR_SERVICE);
         if(!ir.hasIrEmitter())
         {
-            //finish();
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.dialog_title_no_support)
+                    .setPositiveButton(R.string.dialog_result_ok, this)
+                    .show();
+            return;
         }
 
         setTitle(getString(R.string.title_activity_device_choice));
@@ -38,6 +44,13 @@ public class DeviceChoiceActivity extends AppCompatActivity implements IOkButton
         registerForContextMenu(lv);
 
         UpdateDeviceList();
+    }
+
+
+    @Override
+    public void onClick(DialogInterface dialogInterface, int i)
+    {
+        finish();
     }
 
     @Override
