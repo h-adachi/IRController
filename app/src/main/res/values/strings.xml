@@ -2,9 +2,9 @@
     <string name="app_name">IRController</string>
     <string name="menu_append">Append</string>
 
-    <string name="operation_none">None</string>
-    <string name="operation_edit">Edit</string>
-    <string name="operation_delete">Delete</string>
+    <string name="menu_operation">Operation</string>
+    <string name="menu_operation_edit">Edit</string>
+    <string name="menu_operation_delete">Delete</string>
 
     <string name="intent_extra_device_info">DeviceInfo</string>
     <string name="intent_extra_command_info">CommandInfo</string>

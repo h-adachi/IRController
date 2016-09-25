@@ -14,7 +14,7 @@ import android.widget.ListView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CommandChoiceActivity extends AppCompatActivity implements IOkButtonListener, IDeviceID
+public class CommandChoiceActivity extends AppCompatActivity implements IOkButtonListener, IDeviceInfo
 {
     ConsumerIrManager mIR;
     DeviceInfo mDeviceInfo;
@@ -47,7 +47,7 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        if (item.getItemId() == R.id.action_append)
+        if (item.getItemId() == R.id.menu_action_append)
         {
 
             CommitCommandDialog dialog = new CommitCommandDialog();
@@ -64,6 +64,7 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo)
     {
         super.onCreateContextMenu(menu, view, menuInfo);
+        menu.setHeaderTitle(R.string.menu_operation);
         getMenuInflater().inflate(R.menu.menu_choice_operation, menu);
     }
 
@@ -74,7 +75,7 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
         CommandInfo ci = (CommandInfo)lv.getAdapter().getItem(info.position);
         switch (item.getItemId())
         {
-            case R.id.operation_edit:
+            case R.id.menu_operation_edit:
                 CommitCommandDialog dialog = new CommitCommandDialog();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(getString(R.string.intent_extra_command_info), (Serializable) ci);
@@ -82,7 +83,7 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
                 dialog.show(getSupportFragmentManager(), "Dialog");
                 return true;
 
-            case R.id.operation_delete:
+            case R.id.menu_operation_delete:
                 SQLHelper sql = new SQLHelper(this);
                 sql.DeleteCommand(ci.id);
                 UpdateCommandList();
@@ -92,9 +93,9 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
     }
 
     @Override
-    public int GetDeviceID()
+    public DeviceInfo GetDeviceInfo()
     {
-        return mDeviceInfo.id;
+        return mDeviceInfo;
     }
 
     @Override
@@ -131,22 +132,37 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
                 switch(mDeviceInfo.Format)
                 {
                     // NEC
-                    case 0:
+                    case R.id.dialog_device_format_nec:
                         ir = new IRFormatNEC();
-                        ir.Init((short)Integer.parseInt(mDeviceInfo.Costomer, 16));
+                        ir.Init((short)Integer.parseInt(mDeviceInfo.Customer, 16));
                         break;
                 }
                 if(ir == null) return;
 
-                String[] dss = ci.Data.split(",");
-                byte[] data = new byte[dss.length];
-                for(int i = 0; i < data.length; i++)
+                String[] datas = ci.Data.split(",");
+                ArrayList<Byte> dataList = new ArrayList<Byte>();
+                for(int i = 0; i < datas.length; i++)
                 {
-                    data[i] = (byte)Integer.parseInt(dss[i], 16);
+                    if(datas[i].equals("R"))
+                    {
+                        if(dataList.size() > 0)
+                        {
+                            mIR.transmit(ir.CarrierFrequency(), ir.MakeData(dataList));
+                        }
+                        if(ir.IsRepeat())
+                        {
+                            mIR.transmit(ir.CarrierFrequency(), ir.Repeat());
+                        }
+                        dataList.clear();
+                    }
+                    else
+                    {
+                        dataList.add((byte)(Integer.parseInt(datas[i], 16)));
+                    }
                 }
-                if(mIR.hasIrEmitter())
+                if(dataList.size() > 0)
                 {
-                    mIR.transmit(ir.CarrierFrequency(), ir.MakeData(data));
+                    mIR.transmit(ir.CarrierFrequency(), ir.MakeData(dataList));
                 }
             }
         });

@@ -11,5 +11,5 @@ public class DeviceInfo implements Serializable
     public int id = -1;
     public int Format;
     public String Name;
-    public String Costomer;
+    public String Customer;
 }

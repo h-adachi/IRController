@@ -18,7 +18,7 @@ import android.widget.EditText;
 public class CommitCommandDialog extends DialogFragment implements DialogInterface.OnClickListener
 {
     IOkButtonListener mListener;
-    IDeviceID mDeviceID;
+    DeviceInfo mDeviceInfo;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
@@ -28,7 +28,7 @@ public class CommitCommandDialog extends DialogFragment implements DialogInterfa
         View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_commit_command_dialog, null);
         builder.setView(view);
         builder.setNegativeButton(R.string.dialog_result_cancel, null);
-        if(ci == null) Create(builder);
+        if(ci == null) Create(builder, view);
         else Edit(builder, view, ci);
         return builder.create();
     }
@@ -38,10 +38,10 @@ public class CommitCommandDialog extends DialogFragment implements DialogInterfa
     {
         super.onAttach(context);
         if(context instanceof IOkButtonListener == false) return;
-        if(context instanceof IDeviceID == false) return;
+        if(context instanceof IDeviceInfo == false) return;
 
         mListener = (IOkButtonListener)context;
-        mDeviceID = (IDeviceID)context;
+        mDeviceInfo = ((IDeviceInfo)context).GetDeviceInfo();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class CommitCommandDialog extends DialogFragment implements DialogInterfa
         Dialog dialog = getDialog();
         CommandInfo ci = (CommandInfo)getArguments().getSerializable(getString(R.string.intent_extra_command_info));
         if(ci == null) ci = new CommandInfo();
-        ci.Device = mDeviceID.GetDeviceID();
+        ci.Device = mDeviceInfo.id;
         EditText et = (EditText) dialog.findViewById(R.id.dialog_command_name);
         ci.Name = et.getText().toString();
         et = (EditText) dialog.findViewById(R.id.dialog_command_data);
@@ -61,7 +61,7 @@ public class CommitCommandDialog extends DialogFragment implements DialogInterfa
         mListener.onOkClicked();
     }
 
-    private void Create(AlertDialog.Builder builder)
+    private void Create(AlertDialog.Builder builder, View view)
     {
         builder.setTitle(R.string.dialog_title_create);
         builder.setPositiveButton(R.string.dialog_result_ok, this);

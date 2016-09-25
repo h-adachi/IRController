@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="h_adachi.com.ircontroller.DeviceChoiceActivity">
     <item
-        android:id="@+id/action_append"
+        android:id="@+id/menu_action_append"
         android:orderInCategory="100"
         android:title="@string/menu_append"
         app:showAsAction="never" />

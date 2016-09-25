@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/operation_none"
-        android:title="@string/operation_none"/>
+        android:id="@+id/menu_operation_edit"
+        android:title="@string/menu_operation_edit" />
     <item
-        android:id="@+id/operation_edit"
-        android:title="@string/operation_edit"/>
-    <item
-        android:id="@+id/operation_delete"
-        android:title="@string/operation_delete"/>
+        android:id="@+id/menu_operation_delete"
+        android:title="@string/menu_operation_delete"/>
 </menu>

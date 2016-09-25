@@ -50,7 +50,7 @@ public class DeviceChoiceActivity extends AppCompatActivity implements IOkButton
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        if (item.getItemId() == R.id.action_append)
+        if (item.getItemId() == R.id.menu_action_append)
         {
             CommitDeviceDialog dialog = new CommitDeviceDialog();
             Bundle bundle = new Bundle();
@@ -66,6 +66,7 @@ public class DeviceChoiceActivity extends AppCompatActivity implements IOkButton
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo)
     {
         super.onCreateContextMenu(menu, view, menuInfo);
+        menu.setHeaderTitle(R.string.menu_operation);
         getMenuInflater().inflate(R.menu.menu_choice_operation, menu);
     }
 
@@ -76,7 +77,7 @@ public class DeviceChoiceActivity extends AppCompatActivity implements IOkButton
         DeviceInfo di = (DeviceInfo)lv.getAdapter().getItem(info.position);
         switch (item.getItemId())
         {
-            case R.id.operation_edit:
+            case R.id.menu_operation_edit:
                 CommitDeviceDialog dialog = new CommitDeviceDialog();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(getString(R.string.intent_extra_device_info), (Serializable) di);
@@ -84,7 +85,7 @@ public class DeviceChoiceActivity extends AppCompatActivity implements IOkButton
                 dialog.show(getSupportFragmentManager(), "Dialog");
                 return true;
 
-            case R.id.operation_delete:
+            case R.id.menu_operation_delete:
                 SQLHelper sql = new SQLHelper(this);
                 sql.DeleteDevice(di.id);
                 UpdateDeviceList();

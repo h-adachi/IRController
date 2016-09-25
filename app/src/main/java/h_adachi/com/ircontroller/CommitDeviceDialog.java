@@ -44,7 +44,7 @@ public class CommitDeviceDialog extends DialogFragment implements DialogInterfac
         EditText et = (EditText) dialog.findViewById(R.id.dialog_device_name);
         di.Name = et.getText().toString();
         et = (EditText) dialog.findViewById(R.id.dialog_device_customer);
-        di.Costomer = et.getText().toString();
+        di.Customer = et.getText().toString();
         SQLHelper helper = new SQLHelper(getActivity());
         helper.CommitDevice(di);
 
@@ -74,6 +74,6 @@ public class CommitDeviceDialog extends DialogFragment implements DialogInterfac
         EditText et = (EditText) view.findViewById(R.id.dialog_device_name);
         et.setText(di.Name);
         et = (EditText) view.findViewById(R.id.dialog_device_customer);
-        et.setText(di.Costomer);
+        et.setText(di.Customer);
     }
 }

@@ -17,7 +17,7 @@ public class SQLHelper extends SQLiteOpenHelper
     public static final String FIELD_ID = "_id";
     public static final String FIELD_FORMAT = "format";
     public static final String FIELD_NAME = "name";
-    public static final String FIELD_CUSTOM = "custom";
+    public static final String FIELD_CUSTOMER = "customer";
     public static final String FIELD_DEVICE = "device_id";
     public static final String FIELD_DATA = "data";
 
@@ -26,7 +26,7 @@ public class SQLHelper extends SQLiteOpenHelper
 
     private static final String DB_NAME = "ir.db";
     private static final int VER = 1;
-    private static final String CreateDeviceTableString = "create table devices(_id integer primary key autoincrement, format int, custom text, name text)";
+    private static final String CreateDeviceTableString = "create table devices(_id integer primary key autoincrement, format int, name text, customer text)";
     private static final String CreateCommandTableString = "create table commands(_id integer primary key autoincrement, device_id integer, name text, data text)";
 
     public SQLHelper(Context context)
@@ -58,7 +58,7 @@ public class SQLHelper extends SQLiteOpenHelper
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(FIELD_FORMAT, di.Format);
-        values.put(FIELD_CUSTOM, di.Costomer);
+        values.put(FIELD_CUSTOMER, di.Customer);
         values.put(FIELD_NAME, di.Name);
         db.insert(TABLE_DEVICE, null, values);
     }
@@ -68,7 +68,7 @@ public class SQLHelper extends SQLiteOpenHelper
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(FIELD_FORMAT, di.Format);
-        values.put(FIELD_CUSTOM, di.Costomer);
+        values.put(FIELD_CUSTOMER, di.Customer);
         values.put(FIELD_NAME, di.Name);
         db.update(TABLE_DEVICE, values, FIELD_ID + " = ?", new String[]{String.valueOf(di.id)});
     }
@@ -115,7 +115,7 @@ public class SQLHelper extends SQLiteOpenHelper
     public ArrayList<DeviceInfo> GetDevice()
     {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_DEVICE, new String[] {FIELD_ID, FIELD_FORMAT, FIELD_CUSTOM, FIELD_NAME}, null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_DEVICE, new String[] {FIELD_ID, FIELD_FORMAT, FIELD_NAME, FIELD_CUSTOMER}, null, null, null, null, null);
         if(cursor == null) return null;
         if(cursor.moveToFirst() == false) return null;
 
@@ -125,8 +125,8 @@ public class SQLHelper extends SQLiteOpenHelper
             DeviceInfo di = new DeviceInfo();
             di.id = cursor.getInt(cursor.getColumnIndex(FIELD_ID));
             di.Format = cursor.getInt(cursor.getColumnIndex(FIELD_FORMAT));
-            di.Costomer = cursor.getString(cursor.getColumnIndex(FIELD_CUSTOM));
             di.Name = cursor.getString(cursor.getColumnIndex(FIELD_NAME));
+            di.Customer = cursor.getString(cursor.getColumnIndex(FIELD_CUSTOMER));
             result.add(di);
         }while(cursor.moveToNext());
         return  result;

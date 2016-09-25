@@ -18,7 +18,7 @@ abstract class IRFormatBase
     abstract protected void CustomCode(ArrayList<Integer> signal, short custom);
 
     // データ設定.
-    abstract protected void DataCode(ArrayList<Integer> signal, byte[] datas);
+    abstract protected void DataCode(ArrayList<Integer> signal, byte data);
 
     // ビット設定.
     abstract protected void On(ArrayList<Integer> signal);
@@ -40,10 +40,13 @@ abstract class IRFormatBase
     }
 
     // データコード設定.
-    public int[] MakeData(byte[] datas)
+    public int[] MakeData(ArrayList<Byte> datas)
     {
         ArrayList<Integer> dataList = new ArrayList<Integer>();
-        DataCode(dataList, datas);
+        for(int i = 0; i < datas.size(); i++)
+        {
+            DataCode(dataList, datas.get(i));
+        }
         TrailerCode(dataList);
 
         int[] result = new int[mSignal.size() + dataList.size()];

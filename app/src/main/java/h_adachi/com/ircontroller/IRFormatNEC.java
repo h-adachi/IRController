@@ -29,14 +29,11 @@ class IRFormatNEC extends IRFormatBase
     }
 
     @Override
-    protected void DataCode(ArrayList<Integer> signal, byte[] datas)
+    protected void DataCode(ArrayList<Integer> signal, byte data)
     {
-        if(datas.length > 1) return;
-
-        byte value = datas[0];
-        AppendBit(signal, value, 8);
-        value = (byte)~value;
-        AppendBit(signal, value, 8);
+        AppendBit(signal, data, 8);
+        data = (byte)~data;
+        AppendBit(signal, data, 8);
     }
 
     @Override
