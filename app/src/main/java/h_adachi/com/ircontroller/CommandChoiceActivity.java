@@ -134,17 +134,23 @@ public class CommandChoiceActivity extends AppCompatActivity implements IOkButto
                     // NEC
                     case R.id.dialog_device_format_nec:
                         ir = new IRFormatNEC();
-                        try
-                        {
-                            ir.Init((short) Integer.parseInt(mDeviceInfo.Customer, 16));
-                        }
-                        catch(NumberFormatException e)
-                        {
-                            return;
-                        }
+                        break;
+
+                    // AEHA
+                    case R.id.dialog_device_format_aeha:
+                        ir = new IRFormatAEHA();
                         break;
                 }
                 if(ir == null) return;
+
+                try
+                {
+                    ir.Init((short) Integer.parseInt(mDeviceInfo.Customer, 16));
+                }
+                catch(NumberFormatException e)
+                {
+                    return;
+                }
 
                 String[] datas = ci.Data.split(",");
                 ArrayList<Byte> dataList = new ArrayList<Byte>();

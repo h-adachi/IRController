@@ -71,6 +71,8 @@ public class CommitDeviceDialog extends DialogFragment implements DialogInterfac
         builder.setTitle(R.string.dialog_title_edit);
         builder.setPositiveButton(R.string.dialog_result_ok, this);
 
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.dialog_device_format);
+        rg.check(di.Format);
         EditText et = (EditText) view.findViewById(R.id.dialog_device_name);
         et.setText(di.Name);
         et = (EditText) view.findViewById(R.id.dialog_device_customer);
