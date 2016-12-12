@@ -37,7 +37,7 @@ public class CommitDeviceDialog extends DialogFragment implements DialogInterfac
     public void onClick(DialogInterface dialogInterface, int i)
     {
         Dialog dialog = getDialog();
-        DeviceInfo di = (DeviceInfo)getArguments().getSerializable(getString(R.string.intent_extra_device_info));;
+        DeviceInfo di = (DeviceInfo)getArguments().getSerializable(getString(R.string.intent_extra_device_info));
         if(di == null) di = new DeviceInfo();
         RadioGroup rg = (RadioGroup) dialog.findViewById(R.id.dialog_device_format);
         di.Format = rg.getCheckedRadioButtonId();
